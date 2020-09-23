@@ -10,16 +10,11 @@ export default function Team({name, id, founded, address, country, squad, dispat
     const { Team } = Styles.Team;
 
     useEffect(()=>{
-        // squad.map(item=>{
-            // console.log(item)
-            // // console.log(item.player_id)
-            // fetch(`https://soccer.sportmonks.com/api/v2.0/players/32?api_token=${Api.key}`)
-                // .then(res => res.json())
-                // .then(json=>setPlayers(json.data))
-                // .then(json=>console.log(json))
-                // .then(()=>{console.log(players)})
-
-        // })
+        squad.map(item=>{
+            fetch(`https://soccer.sportmonks.com/api/v2.0/players/32?api_token=${Api.key}`)
+                .then(res => res.json())
+                .then(json=>setPlayers(json.data))
+        })
 
         fetch(`https://soccer.sportmonks.com/api/v2.0/players?api_token=syV2v9EhhxGkNokncoYIDBUFbMUvy2wLdSAmX5TRuQRdSSo9yFmTDaZPA3cB`)
     })
