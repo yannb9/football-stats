@@ -28,7 +28,7 @@ export default function Team({name, id, founded, address, country, squad, dispat
             <Back onClick={()=>dispatch({type:ACTIONS.CLEARTEAM})}>Back</Back>
             <TeamContainer>
                 <ImgWrapper>
-                    <img src="https://cdn.sportmonks.com/images//soccer/teams/5/5.png"></img>
+                    <img alt="profile-team" src="https://cdn.sportmonks.com/images//soccer/teams/5/5.png"></img>
                 </ImgWrapper>
                 <DetailsWrapper>
                     <H1>{name}</H1>
@@ -41,7 +41,7 @@ export default function Team({name, id, founded, address, country, squad, dispat
             <PlayersContainer>
                 <PlayersList>
                     <H2>Team Players</H2>
-                    <HeaderContainer>
+                    <HeaderContainer alt="profile-team" >
                         <HeaderTitle>Name</HeaderTitle>
                         <HeaderTitle>Position</HeaderTitle>
                         <HeaderTitle>Jersey</HeaderTitle>
