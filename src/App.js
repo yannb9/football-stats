@@ -17,7 +17,8 @@ function reducer(state, action) {
                 founded:action.payload.founded, 
                 address:action.payload.address, 
                 country:action.payload.country,
-                squad:action.payload.squad
+                squad:action.payload.squad,
+                logo:action.payload.logo
             }
         case ACTIONS.CLEARTEAM:
             return {team: ''}
@@ -27,7 +28,7 @@ function reducer(state, action) {
 }
 
 function App() {
-    const [state, dispatch] = useReducer(reducer, {team: '', id:'', founded:'', address:'', country:'', squad:[]})
+    const [state, dispatch] = useReducer(reducer, {team: '', id:'', founded:'', address:'', country:'', squad:[], logo:''})
     const [teams, setTeams] = useState([]);
     const {TeamsContainer, Container, HeaderTitles, HeaderItem, List, Item, Span} = Styles.TeamList
 
@@ -38,7 +39,7 @@ function App() {
         // .then(json=>console.log(json))
     },[])
 
-    function viewTeam(teamName, id, founded, address, country, squad) {
+    function viewTeam(teamName, id, founded, address, country, squad, logo) {
         dispatch({
             type: ACTIONS.SETTEAM,
             payload: {
@@ -47,7 +48,9 @@ function App() {
                 founded: founded,
                 address: address,
                 country: country,
-                squad:squad
+                squad:squad,
+                logo:logo
+                
                 // site: site,
                 
             }
@@ -62,6 +65,7 @@ function App() {
                 address={state.address} 
                 country={state.country}
                 squad={state.squad}
+                logo={state.logo}
                 dispatch={dispatch}/>
     }
 
@@ -76,7 +80,7 @@ function App() {
                 <List>
                     {teams.map((item, index)=>{
                         return(
-                            <Item key={index} onClick={() => viewTeam(item.name, item.id, item.founded, item.venue.data.address, item.country.data.name, item.squad.data)}>
+                            <Item key={index} onClick={() => viewTeam(item.name, item.id, item.founded, item.venue.data.address, item.country.data.name, item.squad.data, item.logo_path)}>
                                 <Span>{item.name}</Span>
                                 <Span>{item.founded}</Span>
                                 {item.venue && item.venue.data.address ? 

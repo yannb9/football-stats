@@ -3,27 +3,26 @@ import { Api } from '../Api'
 import { Styles } from './StyledComponents'
 import { ACTIONS } from '../App'
 
-export default function Team({name, id, founded, address, country, squad, dispatch}){
-    const [players, setPlayers] = useState()
+export default function Team({name, id, founded, address, country, squad, logo, dispatch}){
+    const [players, setPlayers] = useState([])
     const { Back, PlayersContainer, PlayersList, H2, HeaderContainer, HeaderTitle,  Player, Profile, Image, Name, Position, Jersey} = Styles.Team.PlayersList;
     const { TeamContainer, ImgWrapper, DetailsWrapper, H1, Year, Site, Span } = Styles.Team.Presentation;
     const { Team } = Styles.Team;
 
     useEffect(()=>{
+        console.log(squad)
         squad.map(item=>{
             fetch(`https://soccer.sportmonks.com/api/v2.0/players/32?api_token=${Api.key}`)
                 .then(res => res.json())
                 .then(json=>setPlayers(json.data))
         })
-
-        fetch(`https://soccer.sportmonks.com/api/v2.0/players?api_token=syV2v9EhhxGkNokncoYIDBUFbMUvy2wLdSAmX5TRuQRdSSo9yFmTDaZPA3cB`)
     })
     return(
         <Team className="Team">
             <Back onClick={()=>dispatch({type:ACTIONS.CLEARTEAM})}>Back</Back>
             <TeamContainer>
                 <ImgWrapper>
-                    <img alt="profile-team" src="https://cdn.sportmonks.com/images//soccer/teams/5/5.png"></img>
+                    <img alt="logo-team" src={logo}></img>
                 </ImgWrapper>
                 <DetailsWrapper>
                     <H1>{name}</H1>
