@@ -10,12 +10,17 @@ export default function Team({name, id, founded, address, country, squad, logo, 
     const { Team } = Styles.Team;
 
     useEffect(()=>{
+        var allPlayers = [];
         squad.map(item=>{
-            fetch(`https://soccer.sportmonks.com/api/v2.0/players/${item.player_id}?api_token=${Api.key}`)
+            fetch(`https://soccer.sportmonks.com/api/v2.0/players/${item.player_id}?api_token=${Api.key}&include=position`)
                 .then(res => res.json())
-                .then(json=>setPlayers(json.data))
+                .then(json=>{
+                    allPlayers.push(json.data)
+                })
+                .then(()=>setPlayers(allPlayers))
         })
     },[])
+    console.log(players)
     return(
         <Team className="Team">
             <Back onClick={()=>dispatch({type:ACTIONS.CLEARTEAM})}>Back</Back>
