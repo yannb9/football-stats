@@ -10,7 +10,6 @@ export default function Team({name, id, founded, address, country, squad, logo, 
     const { Team } = Styles.Team;
 
     useEffect(()=>{
-        console.log(squad)
         squad.map(item=>{
             fetch(`https://soccer.sportmonks.com/api/v2.0/players/32?api_token=${Api.key}`)
                 .then(res => res.json())
