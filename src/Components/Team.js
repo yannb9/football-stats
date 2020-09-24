@@ -13,7 +13,6 @@ export default function Team({name, id, founded, address, country, squad, logo, 
         setTimeout(()=>setPlayers(squad), 1000);
     },[squad])
     // useEffect(()=>setPlayers(squad),[])
-
     return(
         <Team className="Team">
             <Back onClick={()=>dispatch({type:ACTIONS.CLEARTEAM})}>Back</Back>

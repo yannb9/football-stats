@@ -16,13 +16,13 @@ function reducer(state, action) {
             squad.map(item=>{
                 return fetch(`https://soccer.sportmonks.com/api/v2.0/players/${item.player_id}?api_token=${Api.key}&include=position,stats`)
                 .then(res=>res.json())
-                .then(json=>console.log(json.data))
-                // .then(json=>playersList.push({
-                //     id:json.data.player_id,
-                //     fullname:json.data.fullname,
-                //     position:json.data.position.data.name,
-                //     profile: json.data.image_path,
-                // }))
+                // .then(json=>console.log(json.data))
+                .then(json=>playersList.push({
+                    id:json.data.player_id,
+                    fullname:json.data.fullname,
+                    position:json.data.position.data.name,
+                    profile: json.data.image_path,
+                }))
             })
             return {
                 team: action.payload.team, 
@@ -31,7 +31,6 @@ function reducer(state, action) {
                 address:action.payload.address, 
                 country:action.payload.country,
                 squad: playersList,
-                // squad:action.payload.squad,
                 logo:action.payload.logo
             }
         case ACTIONS.CLEARTEAM:
@@ -50,7 +49,6 @@ function App() {
         fetch(`https://soccer.sportmonks.com/api/v2.0/teams?api_token=${Api.key}&include=country,fifaranking,uefaranking,venue,visitorResults,squad`)
         .then(res => res.json())
         .then(json => setTeams(json.data))
-        // .then(json => console.log(json.data))
     },[])
 
     function viewTeam(teamName, id, founded, address, country, squad, logo) {
@@ -67,10 +65,6 @@ function App() {
             }
         })
     }
-
-    // function getPlayers(players){
-    //     players.map()
-    // }
 
     if (state.team) {
         return <Team 
