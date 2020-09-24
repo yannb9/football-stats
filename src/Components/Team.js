@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import { Api } from '../Api'
 import { Styles } from './StyledComponents'
 import { ACTIONS } from '../App'
+
 
 export default function Team({name, id, founded, address, country, squad, logo, dispatch}){
     const [players, setPlayers] = useState([])
@@ -10,17 +10,10 @@ export default function Team({name, id, founded, address, country, squad, logo, 
     const { Team } = Styles.Team;
 
     useEffect(()=>{
-        var allPlayers = [];
-        squad.map(item=>{
-            fetch(`https://soccer.sportmonks.com/api/v2.0/players/${item.player_id}?api_token=${Api.key}&include=position`)
-                .then(res => res.json())
-                .then(json=>{
-                    allPlayers.push(json.data)
-                })
-                .then(()=>setPlayers(allPlayers))
-        })
-    },[])
-    console.log(players)
+        setTimeout(()=>setPlayers(squad), 1000);
+    },[squad])
+    // useEffect(()=>setPlayers(squad),[])
+
     return(
         <Team className="Team">
             <Back onClick={()=>dispatch({type:ACTIONS.CLEARTEAM})}>Back</Back>
@@ -39,24 +32,22 @@ export default function Team({name, id, founded, address, country, squad, logo, 
             <PlayersContainer>
                 <PlayersList>
                     <H2>Team Players</H2>
-                    <HeaderContainer alt="profile-team" >
+                    <HeaderContainer>
                         <HeaderTitle>Name</HeaderTitle>
                         <HeaderTitle>Position</HeaderTitle>
-                        <HeaderTitle>Jersey</HeaderTitle>
+                        <HeaderTitle>Jersy No.</HeaderTitle>
                     </HeaderContainer>
-                    {players.map((item,ind)=>{
-                            return (
-                                <Player key={ind}>
-                                    <Profile>
-                                        <Image src={item.image_path}></Image>
-                                        <Name>{item.fullname}</Name>
-                                    </Profile>
-                                    <Position>{item.position.data.name}</Position>
-                                    <Jersey>18</Jersey>
-                                </Player>
-                            )
-                        })}
-
+                    {players.map((item,ind)=>
+                    // console.log(item)
+                        <Player key={ind}>
+                            <Profile>
+                                <Image src={item.profile}></Image>
+                                <Name>{item.fullname}</Name>
+                            </Profile>
+                            <Position>{item.position}</Position>
+                            <Jersey>18</Jersey>
+                        </Player>
+                        )}
                 </PlayersList>
             </PlayersContainer>
         </Team>

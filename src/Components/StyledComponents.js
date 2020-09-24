@@ -86,7 +86,7 @@ export const Styles = {
             `,
             H2: styled.h2`
                 display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-columns: 0.5fr 1fr 1fr;
                 text-align: center;
                 color: #fff;
             `,
@@ -94,7 +94,7 @@ export const Styles = {
                 color: #de4463;
                 font-weight: 500;
                 display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-columns: 0.5fr 1fr 1fr;
                 justify-content: center;
                 align-items: center;
                 text-align: center;
@@ -110,12 +110,14 @@ export const Styles = {
                 list-style: none;
                 background: rgb(28 28 28);
                 padding: 10px;
+                margin-bottom:20px;
                 border-radius: 10px;
                 border-bottom: 1px solid rgb(57,57,57);
             `,
             Profile: styled.div`
                 display: grid;
-                grid-template-columns: 10% 30%;
+                grid-template-columns: 15% 100%;
+                width: 70%;
                 align-items: center;
                 justify-content: center;
             `,
