@@ -10,17 +10,12 @@ export default function Team({name, id, founded, address, country, squad, logo, 
     const { Team } = Styles.Team;
 
     useEffect(()=>{
-        // console.log(JSON.stringify(squad))
-        // squad.map(item=>{
-        //     console.log(item.)
-        // })
         squad.map(item=>{
             fetch(`https://soccer.sportmonks.com/api/v2.0/players/${item.player_id}?api_token=${Api.key}`)
                 .then(res => res.json())
                 .then(json=>setPlayers(json.data))
         })
-    })
-    // console.log(players)
+    },[])
     return(
         <Team className="Team">
             <Back onClick={()=>dispatch({type:ACTIONS.CLEARTEAM})}>Back</Back>
@@ -44,7 +39,7 @@ export default function Team({name, id, founded, address, country, squad, logo, 
                         <HeaderTitle>Position</HeaderTitle>
                         <HeaderTitle>Jersey</HeaderTitle>
                     </HeaderContainer>
-                    {/* {players.map((item,ind)=>{
+                    {players.map((item,ind)=>{
                             return (
                                 <Player key={ind}>
                                     <Profile>
@@ -55,7 +50,7 @@ export default function Team({name, id, founded, address, country, squad, logo, 
                                     <Jersey>18</Jersey>
                                 </Player>
                             )
-                        })} */}
+                        })}
 
                 </PlayersList>
             </PlayersContainer>
